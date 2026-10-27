@@ -1,43 +1,33 @@
-# GradeWise Learning Portal — Cloudflare testing setup
+# GradeWise Learning Portal — Cloudflare Pages test deployment
 
-This repository is configured as a Next.js Pages Router app deployed to **Cloudflare Workers** using the OpenNext Cloudflare adapter.
+This repository deploys as a **static Next.js export on Cloudflare Pages**.
 
-## Cloudflare Workers build settings
+## Cloudflare Pages project settings
 
-- Repository: `dexter187gold/gradewise-learning-portal`
+- Git repository: `dexter187gold/gradewise-learning-portal`
 - Production branch: `main`
-- Framework preset: **Next.js** (Workers / OpenNext adapter)
+- Framework preset: **Next.js (Static HTML Export)**
+- Build command: `npm run build`
+- Build output directory: `out`
 - Root directory: `/`
-- Build/deploy command: `npm run deploy`
-- Wrangler config: `wrangler.jsonc`
-- Build output is generated in `.open-next/` by the adapter; do not set a Pages-style static output directory.
+- Automatic production deployments on pushes to `main`: enabled
 
-The repository includes `package.json`, `next.config.js`, `open-next.config.ts`, `wrangler.jsonc`, and TypeScript configuration for the Cloudflare Workers build.
+Next.js is configured with `output: "export"`, so `next build` writes the static pages to `out/`.
 
-## Temporary testing mode
+## Testing mode only
 
-The previous AppDeploy-only browser SDK has been replaced by `lib/appdeploy-client.ts` so the UI can be tested independently of AppDeploy:
+The old AppDeploy-specific browser SDK has been replaced with `lib/appdeploy-client.ts` for Cloudflare testing:
 - Sign-in asks for a test email and stores a local browser session.
-- Sage and quiz requests return clearly placeholder responses.
-- No real identity verification, AI model call, account security, persistent progress, payments, or production API is provided by this testing adapter.
+- Sage tutor and quiz requests return placeholder responses.
+- This adapter does not provide real identity verification, secure sessions, AI generation, server APIs, persistent progress, purchases, or production account security.
 
-**Do not use this adapter for real learners or production.** Replace it with a real authentication provider and server-side API implementation before public launch. The original AppDeploy backend source is retained in `backend/index.ts` for reference, but Cloudflare does not run it automatically.
+The original AppDeploy backend implementation is not deployed to Cloudflare. Replace the test adapter with a real authentication provider and backend before public launch.
 
-## Deploy and auto-deploy
-
-In Cloudflare, use Workers Builds / Workers & Pages to connect the repository, choose `main` as the production branch, and ensure automatic deployments are enabled. Every successful push to `main` should trigger a build and deployment. Set any environment variables/secrets in Cloudflare project settings, never in Git.
-
-## Local checks
+## Local build
 
 ```bash
 npm install
 npm run build
-npm run preview
 ```
 
-The production deployment command used by Workers Builds is `npm run deploy`.
-
-
-## Cloudflare Pages build fix
-
-This project is currently deployed as a Cloudflare Pages static-export test build. Next.js uses `output: 'export'` and writes static files to `out/`. The legacy AppDeploy backend source under `backend/` is excluded from frontend TypeScript compilation; its server handlers are not deployed by Pages. Automatic production deploys are enabled for pushes to `main`.
+The output should be generated in `out/`.
