@@ -1,0 +1,14 @@
+{
+  "methods": ["email"],
+  "headline": "Welcome to GradeWise",
+  "subtitle": "Sign in or create your learner account with your email.",
+  "style": {
+    "mode": "light",
+    "accentColor": "#174a38",
+    "backgroundColor": "#f3f7f1",
+    "panelColor": "#ffffff",
+    "textColor": "#17352a",
+    "fontFamily": "DM Sans, system-ui, sans-serif",
+    "borderRadius": 16
+  }
+}
