@@ -36,3 +36,8 @@ npm run preview
 ```
 
 The production deployment command used by Workers Builds is `npm run deploy`.
+
+
+## Cloudflare Pages build fix
+
+This project is currently deployed as a Cloudflare Pages static-export test build. Next.js uses `output: 'export'` and writes static files to `out/`. The legacy AppDeploy backend source under `backend/` is excluded from frontend TypeScript compilation; its server handlers are not deployed by Pages. Automatic production deploys are enabled for pushes to `main`.
