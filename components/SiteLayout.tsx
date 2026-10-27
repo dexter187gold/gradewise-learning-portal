@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { auth } from '@appdeploy/client';
+import { auth } from '../lib/appdeploy-client';
 import { BookOpen, GraduationCap, Menu, X, UserRound, LogOut, ChevronDown } from 'lucide-react';
 
 const links = [
