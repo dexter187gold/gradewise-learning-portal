@@ -1,0 +1,2 @@
+import type { ReactNode } from 'react'; import { AuthGate, SiteLayout } from './SiteLayout';
+export default function ProtectedPage({title,eyebrow,description,children}:{title:string;eyebrow?:string;description:string;children:ReactNode}){return <AuthGate><SiteLayout protectedPage><main className="content-page"><div className="content-heading"><span className="eyebrow eyebrow-dark">{eyebrow||'YOUR LEARNING SPACE'}</span><h1>{title}</h1><p>{description}</p></div>{children}</main></SiteLayout></AuthGate>}
