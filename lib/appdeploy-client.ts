@@ -3,7 +3,7 @@
 type User = { email: string; name: string; userId: string };
 const KEY = "gradewise-test-user";
 export const auth = {
-  async signIn() {
+  async signIn(_options?: unknown) {
     if (typeof window === "undefined") throw new Error("Sign-in is only available in a browser.");
     const entered = window.prompt("Testing mode: enter an email address to continue", "learner@example.com");
     if (!entered || !entered.includes("@")) throw Object.assign(new Error("Sign-in cancelled"), { code: "popup_closed" });
